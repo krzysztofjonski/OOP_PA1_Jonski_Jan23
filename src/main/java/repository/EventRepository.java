@@ -5,7 +5,7 @@ import model.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-public interface EventRepository {
+public class EventRepository {
     List<Organiser> ORGANISERS = Arrays.asList(
             new Organiser("Józef Kowalski"),
             new Organiser("Józefa Kowalska"),
@@ -48,7 +48,7 @@ public interface EventRepository {
             new Guest("Kinga", "Grabowska")
     );
 
-    default List<Event> getAll() {
+    public List<Event> getAll() {
         return Arrays.asList(
                 new CocktailPartyEvent(100, getRandomEmployee(ORGANISERS),
                         getRandomEmployee(ORGANISERS),
@@ -170,7 +170,7 @@ public interface EventRepository {
         );
     }
 
-    default <E> E getRandomEmployee(List<E> employees) {
+    private <E> E getRandomEmployee(List<E> employees) {
         return employees.get(ThreadLocalRandom.current().nextInt(employees.size()));
     }
 }
